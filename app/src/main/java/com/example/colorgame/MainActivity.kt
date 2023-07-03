@@ -38,12 +38,15 @@ class MainActivity : AppCompatActivity() {
             binding.linearLayout.setBackgroundColor(color)
         })
 
+        binding.colorPickerView.attachAlphaSlider(binding.alphaSlideBar)
+        binding.colorPickerView.attachBrightnessSlider(binding.brightnessSlide)
+
         startColorChangeTimer()
     }
 
     private fun startColorChangeTimer() {
         val delay = 0L
-        val period = 5000L // 5 saniye
+        val period = 20000L
 
         timer.schedule(object : TimerTask() {
             override fun run() {
