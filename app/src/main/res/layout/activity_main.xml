@@ -16,15 +16,6 @@
         android:layout_height="300dp">
     </com.skydoves.colorpickerview.ColorPickerView>
 
-    <com.skydoves.colorpickerview.sliders.AlphaSlideBar
-        android:id="@+id/alphaSlideBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:selector_AlphaSlideBar="@drawable/wheel"
-        app:borderColor_AlphaSlideBar="@android:color/darker_gray"
-        app:borderSize_AlphaSlideBar="5"/>
-
     <com.skydoves.colorpickerview.sliders.BrightnessSlideBar
         android:id="@+id/brightnessSlide"
         android:layout_width="match_parent"
@@ -40,14 +31,25 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal">
+        <TextView
+            android:id="@+id/colorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/dynamicLayout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#000000"
         android:orientation="horizontal">
+        <TextView
+            android:id="@+id/argbTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"/>
     </LinearLayout>
 
 </LinearLayout>

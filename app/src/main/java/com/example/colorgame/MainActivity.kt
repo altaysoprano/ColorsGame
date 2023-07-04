@@ -2,8 +2,8 @@ package com.example.colorgame
 
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.Button
-import android.widget.LinearLayout
+import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +14,6 @@ import com.skydoves.colorpickerview.listeners.ColorListener
 import java.util.Random
 import java.util.Timer
 import java.util.TimerTask
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,21 +29,20 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        viewModel.selectedColor.observe(this, Observer { color ->
-            binding.linearLayout.setBackgroundColor(color)
-        })
-
         binding.colorPickerView.setColorListener(ColorListener { color, fromUser ->
             binding.linearLayout.setBackgroundColor(color)
+            val red = Color.red(color)
+            val green = Color.green(color)
+            val blue = Color.blue(color)
+            binding.colorTextView.text = "RGB: $red, $green, $blue"
         })
 
-        binding.colorPickerView.attachAlphaSlider(binding.alphaSlideBar)
         binding.colorPickerView.attachBrightnessSlider(binding.brightnessSlide)
 
-        startColorChangeTimer()
+        startColorChangeTimer(binding.argbTextView)
     }
 
-    private fun startColorChangeTimer() {
+    private fun startColorChangeTimer(argbTextView: TextView) {
         val delay = 0L
         val period = 20000L
 
@@ -53,6 +51,10 @@ class MainActivity : AppCompatActivity() {
                 val randomColor = getRandomColor()
                 runOnUiThread {
                     binding.dynamicLayout.setBackgroundColor(randomColor)
+                    val red = Color.red(randomColor)
+                    val green = Color.green(randomColor)
+                    val blue = Color.blue(randomColor)
+                    argbTextView.text = "RGB: $red, $green, $blue"
                 }
             }
         }, delay, period)
@@ -71,4 +73,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         timer.cancel()
     }
-    }
+}
